@@ -1,0 +1,4 @@
+{
+    "SERVER_ENV": "local",
+    "BITMEX_BASE_URL": "https://www.bitmex.com/api/v1"
+}
