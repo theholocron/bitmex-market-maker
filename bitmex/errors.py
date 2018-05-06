@@ -1,10 +1,14 @@
-class AuthError(Exception):
+class RetryLimitExceededError(Exception):
     pass
 
 
-class MarketOverload(Exception):
+class MarketOverloadError(Exception):
     pass
 
 
-class MarketLimitFailed(Exception):
+class APIParameterError(Exception):
+    pass
+
+
+class UnauthorizedError(Exception):
     pass

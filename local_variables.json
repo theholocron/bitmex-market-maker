@@ -1,4 +1,5 @@
 {
     "SERVER_ENV": "local",
-    "LOG_FILE_PATH": "/Users/nirmal/Projects/Github/merkleroot.com/bitmex_market_maker/logs"
+    "LOG_FILE_PATH": "/Users/nirmal/Projects/Github/merkleroot.com/bitmex_market_maker/logs/log.text",
+    "XBt_to_XBT": "100000000"
 }

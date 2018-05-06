@@ -9,7 +9,7 @@ LOGGING = {
     'version': 1,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '%(levelname)s: %(asctime)s: %(module)s: %(process)d %(thread)d %(message)s'
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -19,13 +19,13 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'verbose'
         },
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': LOG_FILE_PATH,
-            'formatter': 'simple'
+            'formatter': 'verbose'
         },
     },
     'loggers': {
