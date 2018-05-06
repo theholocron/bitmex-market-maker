@@ -1,4 +1,6 @@
 import os
+import pytz
+from dateutil import parser
 from bitmex.api import BitmexAPIConnector
 
 
@@ -41,3 +43,15 @@ class BitmexPosition(object):
 
     def __repr__(self):
         return f'<{self.symbol}: {self.currentQty} Entry:{int(self.avgEntryPrice)} Market:{int(self.markPrice)} Liquid:{int(self.liquidationPrice)} rpnl: {self.realisedGrossPnl/self.XBt_to_XBT} upnl: {self.unrealisedGrossPnl/self.XBt_to_XBT}>'
+
+    @property
+    def liquidation_delta(self):
+        return (self.liquidationPrice - self.markPrice)
+
+    @property
+    def tick(self):
+        return pytz.utc.localize(parser.parse(self.openingTimestamp, ignoretz=True))
+
+    @property
+    def total_pnl(self):
+        return (self.realisedGrossPnl + self.unrealisedGrossPnl)/self.XBt_to_XBT
