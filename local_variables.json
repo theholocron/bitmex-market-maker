@@ -1,4 +1,4 @@
 {
     "SERVER_ENV": "local",
-    "BITMEX_BASE_URL": "https://www.bitmex.com/api/v1"
+    "LOG_FILE_PATH": "/Users/nirmal/Projects/Github/merkleroot.com/bitmex_market_maker/logs"
 }

@@ -1,0 +1,4 @@
+*.pyc
+__pycache__
+logs/*
+bitmex_market_maker/db.sqlite3

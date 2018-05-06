@@ -5,7 +5,7 @@ from time import time
 from django.conf import settings
 
 
-class BitmexAuth(requests.auth.AuthBase):
+class BitmexAPIAuth(requests.auth.AuthBase):
 
     def __call__(self, request):
         """called at the time of forming http request - generates http headers for auth"""
