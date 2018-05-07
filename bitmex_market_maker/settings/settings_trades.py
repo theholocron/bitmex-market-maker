@@ -1,7 +1,6 @@
 # Authorization keys for the Bitmex API / Websocket
-BITMEX_API_KEY = "zVq0OfVXjRxQaxDtBky_c0Me"
-BITMEX_API_SECRET = "_3s82fKhnerd6H8Jg8Z2-B8zgUP09Fbnw6G-wSGAxalxlYu1"
+BITMEX_API_KEY = "UxOXp8FEAZn6ImYTR0vexA6u"
+BITMEX_API_SECRET = "QuhRfqZoWOf2Bf2hv0W806VN3EorS_wCc69dMz_lHP-eItVW"
 
 # URL to hit our API requests with
-BITMEX_BASE_URL = "https://www.bitmex.com/api/v1"
-BITMEX_WS_URL = "wss://www.bitmex.com/realtime"
+BITMEX_BASE_URL = "https://testnet.bitmex.com/api/v1"
