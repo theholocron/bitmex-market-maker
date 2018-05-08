@@ -2,7 +2,7 @@ import os
 import time
 import logging
 import requests
-from django.conf import settings
+import settings
 from bitmex.auth import BitmexAPIAuth
 from bitmex.errors import (
     MarketOverloadError,
@@ -27,7 +27,7 @@ class BitmexAPIConnector(object):
     RATE_LIMIT_PER_MINUTE = os.getenv('RATE_LIMIT_PER_MINUTE', 60)
 
     ##############################################################
-    ######## INTERNAL / PRIVATE FUNCTIONS AND VARIABLES ##########
+    # INTERNAL / PRIVATE FUNCTIONS AND VARIABLES
     ##############################################################
 
     @property
@@ -61,7 +61,7 @@ class BitmexAPIConnector(object):
         url = os.path.join(settings.BITMEX_BASE_URL, endpoint)
         logger.debug(f'Initiaing http request for API {endpoint} with params {params}')
         response = requests.request(method=method, url=url, json=params, auth=BitmexAPIAuth())
-        diagnosis = self._diagnose_api_resp(response)
+        self._diagnose_api_resp(response)
         self.locked = True
         return response.json()
 

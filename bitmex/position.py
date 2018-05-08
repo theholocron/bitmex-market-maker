@@ -42,7 +42,14 @@ class BitmexPosition(object):
             setattr(self, key, value)
 
     def __repr__(self):
-        return f'<{self.symbol}: {self.currentQty} Entry:{int(self.avgEntryPrice)} Market:{int(self.markPrice)} Liquid:{int(self.liquidationPrice)} rpnl: {self.realisedGrossPnl/self.XBt_to_XBT} upnl: {self.unrealisedGrossPnl/self.XBt_to_XBT}>'
+        sym = self.symbol
+        qty = self.currentQty
+        entry = int(self.avgEntryPrice)
+        market = int(self.markPrice)
+        liquid = int(self.liquidationPrice)
+        rpnl = self.realisedGrossPnl / self.XBt_to_XBT
+        upnl = self.unrealisedGrossPnl / self.XBt_to_XBT
+        return f'<{sym}: {qty} Entry:{entry} Market:{market} Liquid:{liquid} rpnl: {rpnl} upnl: {upnl}>'
 
     @property
     def liquidation_delta(self):
@@ -54,4 +61,4 @@ class BitmexPosition(object):
 
     @property
     def total_pnl(self):
-        return (self.realisedGrossPnl + self.unrealisedGrossPnl)/self.XBt_to_XBT
+        return (self.realisedGrossPnl + self.unrealisedGrossPnl) / self.XBt_to_XBT

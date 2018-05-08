@@ -1,8 +1,8 @@
 import hmac
 import hashlib
 import requests
+import settings
 from time import time
-from django.conf import settings
 
 
 class BitmexAPIAuth(requests.auth.AuthBase):
@@ -29,4 +29,5 @@ class BitmexAPIAuth(requests.auth.AuthBase):
             data = data.decode('utf8')
 
         message = request.method + path + str(request.headers['api-nonce']) + (data or '')
-        return hmac.new(bytes(settings.BITMEX_API_SECRET, 'utf8'), bytes(message, 'utf8'), digestmod=hashlib.sha256).hexdigest()
+        api_secret = settings.BITMEX_API_SECRET
+        return hmac.new(bytes(api_secret, 'utf8'), bytes(message, 'utf8'), digestmod=hashlib.sha256).hexdigest()
