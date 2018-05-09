@@ -3,7 +3,7 @@ import pytz
 from dateutil import parser
 from datetime import datetime
 from bitmex.api import BitmexAPIConnector
-from typing import Dict, Union
+from typing import Dict, Union, List
 
 
 class BitmexPositionAPI(BitmexAPIConnector):
@@ -31,7 +31,7 @@ class BitmexPositionAPI(BitmexAPIConnector):
         super().__init__()
         positions = self._make_request('GET', 'position', {"columns": self.COLUMNS})
 
-        self.open_positions = list()
+        self.open_positions: List[BitmexPosition] = list()
         for position in positions:
             self.open_positions.append(BitmexPosition(position))
 
@@ -39,7 +39,23 @@ class BitmexPositionAPI(BitmexAPIConnector):
 class BitmexPosition(object):
 
     def __init__(self, position: Dict[str, Union[str, int]]) -> None:
-        self.XBt_to_XBT = int(os.getenv('XBt_to_XBT'))
+        self.XBt_to_XBT = int(os.getenv('XBt_to_XBT', "100000000"))
+        self.symbol = None
+        self.openingTimestamp = '1970-30-01 00:00:00Z'
+        self.leverage = 0
+        self.openingQty = 0
+        self.currentQty = 0
+        self.realisedCost = 0
+        self.markPrice = 0
+        self.realisedGrossPnl = 0
+        self.unrealisedGrossPnl = 0
+        self.simplePnl = 0
+        self.liquidationPrice = 0
+        self.lastPrice = 0
+        self.breakEvenPrice = 0
+        self.avgEntryPrice = 0
+        self.prevClosePrice = 0
+
         for key, value in position.items():
             setattr(self, key, value)
         return

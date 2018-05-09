@@ -7,7 +7,7 @@ from time import time
 
 class BitmexAPIAuth(requests.auth.AuthBase):
 
-    def __call__(self, request: requests.PreparedRequest) -> requests.PreparedRequest: # type: ignore
+    def __call__(self, request: requests.PreparedRequest) -> requests.PreparedRequest:  # type: ignore
         """called at the time of forming http request - generates http headers for auth"""
         request.headers['Accept'] = "application/json"
         request.headers['api-nonce'] = self.generate_nonce()

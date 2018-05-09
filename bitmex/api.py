@@ -10,7 +10,7 @@ from bitmex.errors import (
     APIParameterError,
     UnauthorizedError
 )
-from typing import Dict, Union
+from typing import Dict, Union, List
 
 
 logger = logging.getLogger(__name__)
@@ -47,8 +47,8 @@ class BitmexAPIConnector(object):
     def _make_request(self,
                       method: str,
                       endpoint: str,
-                      params: Dict[str, Union[str, int]]
-                      ) -> Dict[str, Union[str, int]]:
+                      params: Dict[str, Union[str, int, List[str]]]
+                      ) -> List[Dict[str, Union[str, int]]]:
         """
         send a https request and returns the response for a generic api call
         the `locked` field on an instance will allow once instance of this
@@ -58,7 +58,7 @@ class BitmexAPIConnector(object):
         """
 
         if self.locked:
-            return {}
+            return [{}, ]
 
         url = os.path.join(settings.BITMEX_BASE_URL, endpoint)
         logger.debug(f'Initiaing http request for API {endpoint} with params {params}')
