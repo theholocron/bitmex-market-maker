@@ -7,7 +7,7 @@ from time import time
 
 class BitmexAPIAuth(requests.auth.AuthBase):
 
-    def __call__(self, request):
+    def __call__(self, request: requests.PreparedRequest) -> requests.PreparedRequest: # type: ignore
         """called at the time of forming http request - generates http headers for auth"""
         request.headers['Accept'] = "application/json"
         request.headers['api-nonce'] = self.generate_nonce()
@@ -15,11 +15,11 @@ class BitmexAPIAuth(requests.auth.AuthBase):
         request.headers['api-signature'] = self.generate_signature(request)
         return request
 
-    def generate_nonce(self):
+    def generate_nonce(self) -> int:
         return int(round(time())) * 1000
 
-    def generate_signature(self, request):
-        parsed_url = requests.urllib3.util.parse_url(request.url)
+    def generate_signature(self, request: requests.PreparedRequest) -> str:
+        parsed_url = requests.models.parse_url(request.url)
         path = parsed_url.path
         if parsed_url.query:
             path = path + '?' + parsed_url.query
