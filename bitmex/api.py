@@ -41,7 +41,7 @@ class BitmexAPIConnector(object):
     def __init__(self) -> None:
         self._ratelimit_remaining = -1
         self._ratelimit_reset = -1
-        self.locked= False
+        self.locked = False
         self.timestamp = int(time.time())
 
     def _make_request(self,
