@@ -1,5 +1,5 @@
-import os
 import pytz
+import settings
 from dateutil import parser
 from datetime import datetime
 from bitmex.api import BitmexAPIConnector
@@ -39,7 +39,6 @@ class BitmexPositionAPI(BitmexAPIConnector):
 class BitmexPosition(object):
 
     def __init__(self, position: Dict[str, Union[str, int]]) -> None:
-        self.XBt_to_XBT = int(os.getenv('XBt_to_XBT', "100000000"))
         self.symbol = None
         self.openingTimestamp = '1970-30-01 00:00:00Z'
         self.leverage = 0
@@ -66,8 +65,8 @@ class BitmexPosition(object):
         entry = int(self.avgEntryPrice)
         market = int(self.markPrice)
         liquid = int(self.liquidationPrice)
-        rpnl = self.realisedGrossPnl / self.XBt_to_XBT
-        upnl = self.unrealisedGrossPnl / self.XBt_to_XBT
+        rpnl = self.realisedGrossPnl / settings.XBt_to_XBT
+        upnl = self.unrealisedGrossPnl / settings.XBt_to_XBT
         return f'<{sym}: {qty} Entry:{entry} Market:{market} Liquid:{liquid} rpnl: {rpnl} upnl: {upnl}>'
 
     @property
@@ -80,4 +79,4 @@ class BitmexPosition(object):
 
     @property
     def total_pnl(self) -> float:
-        return (self.realisedGrossPnl + self.unrealisedGrossPnl) / self.XBt_to_XBT
+        return (self.realisedGrossPnl + self.unrealisedGrossPnl) / settings.XBt_to_XBT
