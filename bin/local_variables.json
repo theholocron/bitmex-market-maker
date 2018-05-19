@@ -1,6 +1,0 @@
-{
-    "SERVER_ENV": "local",
-    "LOG_FILE_PATH": "/Users/nirmal/Projects/Github/merkleroot.com/bitmex_market_maker/logs/log.text",
-    "XBt_to_XBT": "100000000",
-    "TIP": "This file currently serves no purpose. Will be needed in the future when we seperate API keys from settings file"
-}
